@@ -123,21 +123,20 @@ class GuessNumberUi(ctk.CTk):
 class OkMessage(ctk.CTkToplevel):
     def __init__(self, master, title, message):
         super().__init__(master)
-
+        self.title(title)
+        self.resizable(False, False)
         width = 200
         height = 100
         self.geometry(f"{width}x{height}")
         self.update_idletasks()
-        screen_width = self.winfo_screenwidth()
-        screen_height = self.winfo_screenheight()
-        x = (screen_width - width) // 2
-        y = (screen_height - height) // 2
+        master_x = master.winfo_x()
+        master_y = master.winfo_y()
+        master_width = master.winfo_width()
+        master_height = master.winfo_height()
+        x = master_x +(master_width - width) // 2
+        y = master_y + (master_height - height) // 2
         self.geometry(f"{width}x{height}+{x}+{y}")
         self.minsize(width, height)
-        self.title(title)
-        self.resizable(False, False)
-
         ctk.CTkLabel(self, text=message, font=("Arial", 15)).pack(pady=(20,0))
         ctk.CTkButton(self, text="OK", width=80, command=self.destroy).pack(pady=10)
-
         self.grab_set()

@@ -1,8 +1,8 @@
 from ui import GuessNumberUi,OkMessage
 import random
 import customtkinter as ctk
-class GuessNumberGame:
 
+class GuessNumberGame:
     def __init__(self, ui):
         self.ui = ui
         self.secret = random.randint(1, 100)
